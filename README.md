@@ -1,3 +1,5 @@
-The OpenShift `ruby` cartridge documentation can be found at:
+=======
+cucubot
+=======
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-ruby/README.md
+An IRC bot to assist with the cucushift project.
