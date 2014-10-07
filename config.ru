@@ -1,4 +1,8 @@
+require 'rubygems'
+require 'bundler'
 require 'rack/lobster'
+require 'isaac'
+Bundler.require
 
 map '/health' do
   health = proc do |env|
