@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    isaac (0.2.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  isaac
