@@ -4,13 +4,13 @@ require 'isaac'
 #The 'verbose' options shows all output in the terminal window, which is
 #useful for monitoring channel activity.
 configure do |c|
-  c.nick = "$nick_here"
-  c.server = "$irc_server_here"
-  c.port = "$irc_port_here"
+  c.nick = ENV['CUCUBOT_NICK']
+  c.server = ENV['CUCUBOT_SERVER_IP']
+  c.port = ENV['CUCUBOT_SERVER_PORT']
   c.verbose = true
 end
 
 #for the $channel_here var below, prefix the string with a #, as in #cucushift
 on :connect do
-  join "$channel_here"
+  join ENV['CUCUSHIFT_IRC_CHANNEL']
 end
