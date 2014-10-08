@@ -13,7 +13,7 @@ cucubot = Cinch::Bot.new do
   end
 end
 
-
+cucubot.start
 #for the $channel_here var below, prefix the string with a #, as in #cucushift
 #on :connect do
 #  join ENV['CUCUSHIFT_IRC_CHANNEL']
