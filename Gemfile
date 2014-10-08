@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # An IRC bot for sending reminders
- gem 'isaac'
+ gem 'cinch'
 
 # Rack and Lobster for serving http on OpenShift
  gem 'lobster'
