@@ -2,15 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     cinch (2.1.0)
-    daemons (1.1.9)
-    lobster (0.2.7)
-      daemons (>= 1.1.4)
-    rack (1.5.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cinch
-  lobster
-  rack
