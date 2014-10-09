@@ -10,6 +10,7 @@ cucubot = Cinch::Bot.new do
     c.server = ENV['CUCUBOT_SERVER_IP']
     c.port = ENV['CUCUBOT_SERVER_PORT']
     c.channels = [ENV['CUCUSHIFT_IRC_CHANNEL']]
+    c.ping_interval = 30
   end
 end
 
