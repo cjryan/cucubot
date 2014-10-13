@@ -14,6 +14,13 @@ cucubot = Cinch::Bot.new do
   end
 end
 
+#Query for users who have not logged a scrum today
+on :message, "laggards" do |m|
+  #if nothing reply "No laggards today!"
+  m.reply "No laggards today!"
+  #else, show the list of laggards
+end
+
 cucubot.start
 #for the $channel_here var below, prefix the string with a #, as in #cucushift
 #on :connect do
