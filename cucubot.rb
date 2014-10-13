@@ -12,17 +12,18 @@ cucubot = Cinch::Bot.new do
     c.channels = [ENV['CUCUSHIFT_IRC_CHANNEL']]
     c.ping_interval = 30
   end
-end
 
-#Query for users who have not logged a scrum today
-on :message, "laggards" do |m|
-  #if nothing reply "No laggards today!"
-  m.reply "No laggards today!"
-  #else, show the list of laggards
+  #Query for users who have not logged a scrum today
+  on :message, "laggards" do |m|
+    #if nothing reply "No laggards today!"
+    m.reply "No laggards today!"
+    #else, show the list of laggards
+  end
+
+  #for the $channel_here var below, prefix the string with a #, as in #cucushift
+  #on :connect do
+  #  join ENV['CUCUSHIFT_IRC_CHANNEL']
+  #end
 end
 
 cucubot.start
-#for the $channel_here var below, prefix the string with a #, as in #cucushift
-#on :connect do
-#  join ENV['CUCUSHIFT_IRC_CHANNEL']
-#end
