@@ -2,10 +2,7 @@ require 'cinch'
 require 'json'
 require 'open-uri'
 
-#Connect to the cucushift irc channel, taken from the isaac github guide.
-#The 'verbose' options shows all output in the terminal window, which is
-#useful for monitoring channel activity.
-
+#Connect to the cucushift irc channel, taken from the cinch github guide.
 cucubot = Cinch::Bot.new do
   configure do |c|
     c.nick = ENV['CUCUBOT_NICK']
@@ -20,7 +17,7 @@ cucubot = Cinch::Bot.new do
   on :message, "laggards" do |m|
     #if nothing reply "No laggards today!"
     #else, show the list of laggards
-    response = open(ENV['CUCUBOT_SCRUM5000']/bot_portal/bot_checkpoint.json).read
+    response = open("#{ENV['CUCUBOT_SCRUM5000']}/bot_portal/bot_checkpoint.json").read
     if response.empty?
       m.reply "No laggards today!"
     else
