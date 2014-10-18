@@ -2,6 +2,14 @@ require 'cinch'
 require 'json'
 require 'open-uri'
 
+class LaggardPlugin
+  include Cinch::Plugin
+  timer 5, method: :check_scrums
+  def check_scrums
+    User('testuser').send("Hello!")
+  end
+end
+
 #Connect to the cucushift irc channel, taken from the cinch github guide.
 cucubot = Cinch::Bot.new do
   configure do |c|
@@ -10,8 +18,14 @@ cucubot = Cinch::Bot.new do
     c.server = ENV['CUCUBOT_SERVER_IP']
     c.port = ENV['CUCUBOT_SERVER_PORT']
     c.channels = [ENV['CUCUSHIFT_IRC_CHANNEL']]
+    c.plugins.plugins = [LaggardPlugin]
     #c.ping_interval = 30
   end
+
+  #for the $channel_here var below, prefix the string with a #, as in #cucushift
+  #on :connect do
+  #    User('testuser').send("Hello!")
+  #end
 
   #Query for users who have not logged a scrum today
   on :message, "laggards" do |m|
@@ -27,11 +41,6 @@ cucubot = Cinch::Bot.new do
       end
     end
   end
-
-  #for the $channel_here var below, prefix the string with a #, as in #cucushift
-  #on :connect do
-  #  join ENV['CUCUSHIFT_IRC_CHANNEL']
-  #end
 end
 
 cucubot.start
