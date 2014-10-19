@@ -10,6 +10,7 @@ CUCUBOT_REALNAME
 CUCUBOT_SERVER_IP
 CUCUBOT_SERVER_PORT
 CUCUSHIFT_IRC_CHANNEL
+CUCUBOT_SCRUM5000 (The URL of the scrum5000 app, to query for users)
 ```
 
 The bot will reply to commands, query a rails app, and return values
