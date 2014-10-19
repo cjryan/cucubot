@@ -6,7 +6,7 @@ require 'open-uri'
 class LaggardPlugin
   include Cinch::Plugin
   #Every five hours (18000 seconds) run the 'check_scrums' method
-  timer 18000, method: :check_scrums
+  timer 7200, method: :check_scrums
   def check_scrums
     #Check the scrum5000 app for users who have and have not filled out a scrum
     #If response is empty, everyone filled out a scrum, otherwise, send a private

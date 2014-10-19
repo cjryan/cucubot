@@ -5,3 +5,7 @@ source 'https://rubygems.org'
 
 # Add JSON support for parsing output from the scrum5000 app
  gem 'json'
+
+# Add Timezone support
+ gem 'tzinfo'
+ gem 'tzinfo-data'
