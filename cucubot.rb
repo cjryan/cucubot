@@ -1,6 +1,8 @@
 require 'cinch'
 require 'json'
 require 'open-uri'
+require 'tzinfo'
+require 'tzinfo/data'
 
 #Borrowed heavily from https://raw.githubusercontent.com/cinchrb/cinch/master/examples/plugins/timer.rb
 class LaggardPlugin
@@ -19,12 +21,29 @@ class LaggardPlugin
     else
       parsed = JSON.parse(response)
       parsed.each do |unreported|
-        #Uncomment the below line to spam the channel with users
-        #who have not yet filled out a scrum
-        #Channel(ENV['CUCUSHIFT_IRC_CHANNEL']).send "#{unreported[1]}"
+        #Determine the user's timezone, if no tz can be found, send anyway
+        #TODO: Find out how to test for bad TZ info, like just "Perth" instead of "Australia/Perth"
+        #unreported[1][1] is the timezone data, unreported[1][0] is the irc username, as found in the
+        #parsed JSON file.
+        if unreported[1][1]
+          #Get timezone info
+          user_timezone = unreported[1][1]
+          current_tz_info = TZInfo::Timezone.get("#{user_timezone}").now
+          day_num = current_tz_info.wday
+          hour_num = current_tz_info.hour
 
-        #Add support for regex when user changes name
-        User("#{unreported[1]}").send("#{unreported[1]}, please fill out your scrum today.")
+          #Uncomment the below line to spam the channel with users
+          #who have not yet filled out a scrum
+          #Channel(ENV['CUCUSHIFT_IRC_CHANNEL']).send "#{unreported[1]}"
+
+          if day_num >=1 and day_num<=5 and hour_num >=8 and hour_num <=18
+            #Add support for regex when user changes name
+            User("#{unreported[1][0]}").send("#{unreported[1][0]}, please fill out your scrum today.")
+          end
+        else
+          #TODO: do something with those that don't have a correct tz
+          puts "Placeholder"
+        end
       end
     end
   end
@@ -57,7 +76,7 @@ cucubot = Cinch::Bot.new do
     else
       parsed = JSON.parse(response)
       parsed.each do |unreported|
-       m.reply unreported[1]
+       m.reply unreported[1][0]
       end
     end
   end
