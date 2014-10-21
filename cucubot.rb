@@ -25,9 +25,10 @@ class LaggardPlugin
         #TODO: Find out how to test for bad TZ info, like just "Perth" instead of "Australia/Perth"
         #unreported[1][1] is the timezone data, unreported[1][0] is the irc username, as found in the
         #parsed JSON file.
-        if unreported[1][1]
+        user_timezone = unreported[1][1]
+        user_irc_nick = unreported[1][0]
+        if user_timezone
           #Get timezone info
-          user_timezone = unreported[1][1]
           current_tz_info = TZInfo::Timezone.get("#{user_timezone}").now
           day_num = current_tz_info.wday
           hour_num = current_tz_info.hour
@@ -38,7 +39,7 @@ class LaggardPlugin
 
           if day_num >=1 and day_num<=5 and hour_num >=8 and hour_num <=18
             #Add support for regex when user changes name
-            User("#{unreported[1][0]}").send("#{unreported[1][0]}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
+            User("#{user_irc_nick}").send("#{user_irc_nick}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
           end
         else
           #TODO: do something with those that don't have a correct tz
@@ -76,7 +77,8 @@ cucubot = Cinch::Bot.new do
     else
       parsed = JSON.parse(response)
       parsed.each do |unreported|
-       m.reply unreported[1][0]
+       user_irc_nick = unreported[1][0]
+       m.reply user_irc_nick
       end
     end
   end
