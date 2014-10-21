@@ -38,7 +38,7 @@ class LaggardPlugin
 
           if day_num >=1 and day_num<=5 and hour_num >=8 and hour_num <=18
             #Add support for regex when user changes name
-            User("#{unreported[1][0]}").send("#{unreported[1][0]}, please fill out your scrum today.")
+            User("#{unreported[1][0]}").send("#{unreported[1][0]}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
           end
         else
           #TODO: do something with those that don't have a correct tz
