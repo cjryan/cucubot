@@ -1,8 +1,6 @@
 require 'cinch'
 require 'json'
 require 'open-uri'
-require 'tzinfo'
-require 'tzinfo/data'
 require_relative 'laggard_plugin'
 
 #Connect to the cucushift irc channel, taken from the cinch github guide.
