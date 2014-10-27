@@ -11,7 +11,7 @@ require_relative 'plugins/laggard_plugin'
     c.server = ENV['CUCUBOT_SERVER_IP']
     c.port = ENV['CUCUBOT_SERVER_PORT']
     c.channels = [ENV['CUCUSHIFT_IRC_CHANNEL']]
-    c.plugins.plugins = [LaggardPlugin, FindRegexUser]
+    c.plugins.plugins = [LaggardPlugin]
     #c.ping_interval = 30
   end
 
