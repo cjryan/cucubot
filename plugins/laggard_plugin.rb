@@ -3,7 +3,6 @@ require 'json'
 require 'open-uri'
 require 'tzinfo'
 require 'tzinfo/data'
-require_relative 'find_regex_user'
 
 #Borrowed heavily from https://raw.githubusercontent.com/cinchrb/cinch/master/examples/plugins/timer.rb
 class LaggardPlugin
@@ -40,7 +39,12 @@ class LaggardPlugin
 
           if day_num >=1 and day_num<=5 and hour_num >=8 and hour_num <=18
             #Add support for regex when user changes name
-            User("#{user_irc_nick}").send("#{user_irc_nick}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
+
+
+            User("#{real_user_nick}").send("#{user_irc_nick}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
+            #TODO: do User.find on the irc nick, if not found, do the following.
+            real_user_nick = find_regex_user("#{user_irc_nick}")
+
           end
         else
           #TODO: do something with those that don't have a correct tz
@@ -48,5 +52,14 @@ class LaggardPlugin
         end
       end
     end
+  end
+  def find_regex_user(user_irc_nick)
+    user_list = []
+    channel = Channel("#{ENV['CUCUSHIFT_IRC_CHANNEL']}")
+    channel.users.each do |user|
+      user_list << user[0].nick
+    end
+    similar_name_index = user_list.index{|guess| guess.match /user_irc_nick/}
+    real_user_name = user_list[similar_name_index]
   end
 end
