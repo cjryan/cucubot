@@ -2,7 +2,6 @@ require 'cinch'
 require 'json'
 require 'open-uri'
 require_relative 'plugins/laggard_plugin'
-require_relative 'plugins/find_regex_user'
 
 #Connect to the cucushift irc channel, taken from the cinch github guide.
 @cucubot = Cinch::Bot.new do
@@ -12,7 +11,7 @@ require_relative 'plugins/find_regex_user'
     c.server = ENV['CUCUBOT_SERVER_IP']
     c.port = ENV['CUCUBOT_SERVER_PORT']
     c.channels = [ENV['CUCUSHIFT_IRC_CHANNEL']]
-    c.plugins.plugins = [LaggardPlugin, FindRegexUser]
+    c.plugins.plugins = [LaggardPlugin]
     #c.ping_interval = 30
   end
 
