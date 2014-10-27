@@ -10,6 +10,14 @@ class LaggardPlugin
   #Every 2 hours (7200 seconds) run the 'check_scrums' method
   timer 7200, method: :check_scrums
   def check_scrums
+
+    #Get a list of channel users to compare against the db of usernames
+    user_list = []
+    channel = Channel("#{ENV['CUCUSHIFT_IRC_CHANNEL']}")
+    channel.users.each do |user|
+      user_list << user[0].nick
+    end
+
     #Check the scrum5000 app for users who have and have not filled out a scrum
     #If response is empty, everyone filled out a scrum, otherwise, send a private
     #message to the person.
@@ -40,11 +48,9 @@ class LaggardPlugin
           if day_num >=1 and day_num<=5 and hour_num >=8 and hour_num <=18
             #Add support for regex when user changes name
 
-
-            User("#{real_user_nick}").send("#{user_irc_nick}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
             #TODO: do User.find on the irc nick, if not found, do the following.
-            real_user_nick = find_regex_user("#{user_irc_nick}")
-
+            real_user_nick = find_regex_user("#{user_irc_nick}", user_list)
+            User("#{real_user_nick}").send("#{user_irc_nick}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
           end
         else
           #TODO: do something with those that don't have a correct tz
@@ -53,13 +59,12 @@ class LaggardPlugin
       end
     end
   end
-  def find_regex_user(user_irc_nick)
-    user_list = []
-    channel = Channel("#{ENV['CUCUSHIFT_IRC_CHANNEL']}")
-    channel.users.each do |user|
-      user_list << user[0].nick
+  def find_regex_user(user_irc_nick, user_list)
+    similar_name_index = user_list.index{|guess| guess.match /#{user_irc_nick}/}
+    if similar_name_index == nil
+      user_irc_nick
+    else
+      real_user_name = user_list[similar_name_index]
     end
-    similar_name_index = user_list.index{|guess| guess.match /user_irc_nick/}
-    real_user_name = user_list[similar_name_index]
   end
 end
