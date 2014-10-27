@@ -60,6 +60,9 @@ class LaggardPlugin
     end
   end
   def find_regex_user(user_irc_nick, user_list)
+    #Search for the db username (or similar name)  in the current channel list.
+    #If the username is not in the channel list, return the name
+    #else, return the name that matches closest (i.e. if user renamed their nick)
     similar_name_index = user_list.index{|guess| guess.match /#{user_irc_nick}/}
     if similar_name_index == nil
       user_irc_nick
