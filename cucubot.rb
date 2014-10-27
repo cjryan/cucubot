@@ -2,7 +2,6 @@ require 'cinch'
 require 'json'
 require 'open-uri'
 require_relative 'plugins/laggard_plugin'
-require_relative 'plugins/find_regex_user'
 
 #Connect to the cucushift irc channel, taken from the cinch github guide.
 @cucubot = Cinch::Bot.new do
