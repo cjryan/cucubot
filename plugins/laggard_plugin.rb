@@ -49,8 +49,10 @@ class LaggardPlugin
             #Add support for regex when user changes name
 
             #TODO: do User.find on the irc nick, if not found, do the following.
-            real_user_nick = find_regex_user("#{user_irc_nick}", user_list)
-            User("#{real_user_nick}").send("#{user_irc_nick}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
+            real_user_nick_list = find_regex_user("#{user_irc_nick}", user_list)
+            real_user_nick_list.each do |real_user_nick|
+              User("#{real_user_nick}").send("#{user_irc_nick}, please fill out your scrum today. #{ENV['CUCUBOT_SCRUM5000']}")
+            end
           end
         else
           #TODO: do something with those that don't have a correct tz
@@ -63,11 +65,12 @@ class LaggardPlugin
     #Search for the db username (or similar name)  in the current channel list.
     #If the username is not in the channel list, return the name
     #else, return the name that matches closest (i.e. if user renamed their nick)
-    similar_name_index = user_list.index{|guess| guess.match /#{user_irc_nick}/}
-    if similar_name_index == nil
-      user_irc_nick
+    nick_list = []
+    similar_names = user_list.grep /#{user_irc_nick}/
+    if similar_names.empty?
+      nick_list << user_irc_nick
     else
-      real_user_name = user_list[similar_name_index]
+      nick_list = similar_names
     end
   end
 end
