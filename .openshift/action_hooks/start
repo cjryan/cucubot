@@ -1,3 +1,3 @@
 #!/bin/bash
 ln -s $OPENSHIFT_REPO_DIR/vendor/bundle/ruby $GEM_HOME
-ruby $OPENSHIFT_REPO_DIR/cucubot.rb
+nohup ruby $OPENSHIFT_REPO_DIR/cucubot.rb > $OPENSHIFT_DATA_DIR/cucubot.log 2>&1 &
