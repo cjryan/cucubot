@@ -2,6 +2,8 @@ require 'cinch'
 require 'json'
 require 'open-uri'
 require_relative 'plugins/laggard_plugin'
+require_relative 'plugins/file_a_scrum'
+
 
 #Connect to the cucushift irc channel, taken from the cinch github guide.
 @cucubot = Cinch::Bot.new do
@@ -12,6 +14,7 @@ require_relative 'plugins/laggard_plugin'
     c.port = ENV['CUCUBOT_SERVER_PORT']
     c.channels = [ENV['CUCUSHIFT_IRC_CHANNEL']]
     c.plugins.plugins = [LaggardPlugin]
+    c.plugins.plugins = [FileAScrum]
     #c.ping_interval = 30
   end
 
