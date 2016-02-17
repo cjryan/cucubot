@@ -16,6 +16,8 @@ class FileAScrum
     #m.reply "You're filing a scrum."
     if m.message !~ /:yesterday( \w+)/
       m.reply "You're missing yesterday's report."
+    elsif m.message !~ /:today( \w+)/
+      m.reply "You're missing today's report."
     end
   end
 
