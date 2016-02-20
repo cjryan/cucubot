@@ -44,8 +44,7 @@ class FileAScrum
         :accept => :json
       )
 
-      m.reply response.code
-      m.reply response
+      m.reply "#{response}, #{response.code}"
     rescue
       m.reply "Unable to communicate with server; see if Scrum5000 is down."
     end
