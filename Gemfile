@@ -9,3 +9,6 @@ source 'https://rubygems.org'
 # Add Timezone support
  gem 'tzinfo'
  gem 'tzinfo-data'
+
+ #Add REST support
+ gem 'rest-client'
