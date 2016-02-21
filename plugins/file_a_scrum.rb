@@ -46,7 +46,7 @@ class FileAScrum
 
       m.reply "#{response}, #{response.code}"
     rescue
-      m.reply "Unable to communicate with server; see if Scrum5000 is down."
+      m.reply "There was an error filing your scrum."
     end
   end
 
