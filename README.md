@@ -17,6 +17,7 @@ The bot will reply to commands, query a rails app, and return values
 via REST.
 
 A .openshift directory is included to run cucubot in an OpenShift ruby app.
+When running on OpenShift, logs will be stored in the $OPENSHIFT\_DATA\_DIR directory
 
 Cucubot will also report scrums and list previously reported scrums.
 
