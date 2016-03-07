@@ -53,4 +53,11 @@ class FileAScrum
   def show_scrum(m)
     m.reply "You're showing a scrum."
   end
+
+  def help_text(m)
+  end
+
+  def high_five(m)
+    m.reply "/me reaches down ad gives m.user.nick five"
+  end
 end
