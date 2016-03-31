@@ -9,6 +9,7 @@ class FileAScrum
   #means the actual match is !hello
   match /file_scrum.*/, method: :file_scrum
   match /show_scrum( d\+)/, method: :show_scrum
+  match /high_five.*/, method: :high_five
 
   def file_scrum(m)
     # m.user.nick -> nick who sent message
