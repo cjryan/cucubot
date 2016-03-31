@@ -59,6 +59,6 @@ class FileAScrum
   end
 
   def high_five(m)
-    m.reply "Cucubot reaches down ad gives #{m.user.nick} five"
+    m.reply "Cucubot reaches down and gives #{m.user.nick} five"
   end
 end
