@@ -12,7 +12,6 @@ test/tmp
 test/version_tmp
 tmp
 *.swp
-Gemfile.lock
 
 # YARD artifacts
 .yardoc
