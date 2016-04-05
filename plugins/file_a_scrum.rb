@@ -10,6 +10,7 @@ class FileAScrum
   match /file_scrum.*/, method: :file_scrum
   match /show_scrum( d\+)/, method: :show_scrum
   match /high_five.*/, method: :high_five
+  match /help_text.*/, method: :help_text
 
   def file_scrum(m)
     # m.user.nick -> nick who sent message
@@ -56,6 +57,7 @@ class FileAScrum
   end
 
   def help_text(m)
+    m.reply "Please file a scrum in the format; :yesterday xyz :today abc :blockers 123 YYYY-MM-DD"
   end
 
   def high_five(m)
