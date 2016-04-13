@@ -19,9 +19,9 @@ class FileAScrum
     #Parse out the user's scrum message
     #Date must be in format YYYY-MM-DD
     #Sprint number is the number of the current sprint, i.e. '110'
-    yesterday = m.message.match /:yesterday(\s*\w+)/
-    today = m.message.match /:today(\s*\w+)/
-    blockers = m.message.match /:blockers(\s*\w+)/
+    yesterday = m.message.match /:yesterday\s*(.*?):/
+    today = m.message.match /:today\s*(.*?):/
+    blockers = m.message.match /:blockers\s*(.*?):/
     date = m.message.match /:date(\s*\d{4}-\d{2}-\d{2})/
     sprint = m.message.match /:sprint(\s*\d+)/
 
