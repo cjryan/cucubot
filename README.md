@@ -25,4 +25,4 @@ For example:
 cucubot: !log\_scrum (2015-11-23, enter date if not today, otherwise will assume today) :yesterday xyz :today xyz :blockers xyz
 cucubot: !show\_scrum 2015-11-23 (will list all users)
 cucubot: show\_scrum 2015-11-23 user1 (will list specific user)
-
+cucubot: !high\_five
